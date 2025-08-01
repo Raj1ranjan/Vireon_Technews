@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 AI-Powered Tech News</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>📰 AI-Powered Tech News</h1>
+        <div id="news" class="news-list">
+            <p>Loading the latest tech news...</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch("/api/technews")
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    const container = document.getElementById("news");
+                    container.innerHTML = ''; // Clear the "Loading..." message
+
+                    if (data.length === 0) {
+                        container.innerHTML = '<p>No tech news found at the moment. Please try again later!</p>';
+                        return;
+                    }
+
+                    data.forEach(item => {
+                        const card = document.createElement("div");
+                        card.className = "news-item";
+                        // Assuming your /api/technews will return 'id', 'title', 'summary', 'image', 'source', 'url'
+                        card.innerHTML = `
+                            ${item.image ? `<img src="${item.image}" alt="${item.title}" class="article-thumbnail">` : ''}
+                            <div class="news-item-content">
+                                <a href="/article/${item.id}">${item.title}</a>
+                                <p>${item.summary}</p>
+                                <div class="source">Source: ${item.source}</div>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching news:", error);
+                    const container = document.getElementById("news");
+                    container.innerHTML = '<p>Failed to load news. Please try again later.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

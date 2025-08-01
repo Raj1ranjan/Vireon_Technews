@@ -1,0 +1,131 @@
+/* General Body Styles */
+body {
+    font-family: 'Inter', sans-serif; /* Example Google Font */
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6; /* Light background */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+}
+
+/* Main Content Wrapper */
+.container {
+    max-width: 900px; /* Limit content width */
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Headings */
+h1 {
+    font-family: 'Montserrat', sans-serif; /* Another Google Font example */
+    color: #2c3e50; /* Dark blue/grey */
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    letter-spacing: -1px;
+}
+
+/* News List */
+.news-list {
+    display: grid; /* Use CSS Grid for a responsive layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2-3 columns on wider screens */
+    gap: 25px; /* Space between grid items */
+    margin-top: 30px;
+}
+
+.news-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden; /* For image */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex; /* For vertical alignment of content */
+    flex-direction: column;
+}
+
+.news-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.news-item a {
+    text-decoration: none;
+    color: #34495e; /* Darker text for titles */
+    font-weight: bold;
+    padding: 15px;
+    display: block; /* Make the whole area clickable */
+    font-size: 1.1em;
+}
+
+.news-item a:hover {
+    color: #007bff; /* Accent color on hover */
+}
+
+/* Article Detail Page */
+.card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 30px;
+}
+
+.summary {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.7;
+    background-color: #eaf6ff; /* Light blue background for summary */
+    padding: 15px;
+    border-left: 5px solid #007bff; /* Accent border */
+    border-radius: 5px;
+}
+
+.source {
+    font-style: italic;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.original-link a, .nav-link a {
+    color: #007bff; /* Primary accent color */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.original-link a:hover, .nav-link a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker accent on hover */
+}
+
+/* Image styles (if you start adding them) */
+.news-item img {
+    width: 100%;
+    height: 180px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures image covers area without distortion */
+    border-bottom: 1px solid #eee;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    .news-list {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+}
